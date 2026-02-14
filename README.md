@@ -95,3 +95,30 @@ API en `http://localhost:8080`.
 ## Fuente de datos
 
 Los productos se cargan desde `src/main/resources/catalog.json` al iniciar la aplicación.
+
+## Escalabilidad para mayor volumen de datos
+
+Para escalar este catálogo en un escenario real (millones de productos), propondría:
+
+1. Persistencia en base de datos en lugar de JSON en memoria.
+- Migrar a PostgreSQL/MySQL con índices en `brand`, `category`, `price` y `name`.
+- Usar paginación por cursor para listados muy grandes.
+
+2. Motor de búsqueda especializado.
+- Integrar Elasticsearch u OpenSearch para búsqueda de texto completo, relevancia y facetado.
+- Mantener sincronización de catálogo mediante eventos.
+
+3. Caché de lecturas frecuentes.
+- Redis para resultados de búsquedas comunes, filtros populares y detalle de producto.
+- TTL corto e invalidación por cambios de catálogo.
+
+4. Escalado horizontal del backend.
+- Ejecutar múltiples réplicas detrás de un balanceador.
+- API stateless para facilitar autoscaling.
+
+5. Procesamiento asíncrono de actualizaciones.
+- Publicar cambios de productos en cola/event bus (Kafka/RabbitMQ) para actualizar índice y cachés sin bloquear requests.
+
+6. Observabilidad y performance.
+- Métricas (latencia p95/p99, throughput, errores), trazas y alertas.
+- Pruebas de carga periódicas para validar SLAs y capacidad.
