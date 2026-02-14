@@ -12,6 +12,16 @@ Proyecto completo con backend en **Java 17 + Spring Boot** y frontend estático 
 - Detalle de producto por ID.
 - Frontend para explorar catálogo (búsqueda, filtros, orden, paginación y detalle).
 
+## Nota sobre el frontend actual
+
+El frontend incluido en este repositorio se construyó como una implementación rápida para demostrar el flujo funcional end-to-end (búsqueda, filtros, orden y detalle) y facilitar la evaluación técnica del backend.
+
+Como siguiente iteración, se propone un frontend más robusto en términos de UX y arquitectura, por ejemplo:
+
+- Framework moderno (React/Next.js o similar) con componentes reutilizables.
+- Sistema de diseño consistente (tokens, tipografía, accesibilidad).
+- Tests de UI/e2e y monitoreo de performance web 
+
 ## Levantar todo con Docker (recomendado)
 
 Requisito: Docker Desktop o Docker Engine con Compose.
@@ -112,13 +122,9 @@ Para escalar este catálogo en un escenario real (millones de productos), propon
 - Redis para resultados de búsquedas comunes, filtros populares y detalle de producto.
 - TTL corto e invalidación por cambios de catálogo.
 
-4. Escalado horizontal del backend.
-- Ejecutar múltiples réplicas detrás de un balanceador.
-- API stateless para facilitar autoscaling.
-
-5. Procesamiento asíncrono de actualizaciones.
+4. Procesamiento asíncrono de actualizaciones.
 - Publicar cambios de productos en cola/event bus (Kafka/RabbitMQ) para actualizar índice y cachés sin bloquear requests.
 
-6. Observabilidad y performance.
+5. Observabilidad y performance.
 - Métricas (latencia p95/p99, throughput, errores), trazas y alertas.
 - Pruebas de carga periódicas para validar SLAs y capacidad.
