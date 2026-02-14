@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catalog Retail</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">Mundo <strong>Catalog</strong></div>
+      <button class="top-link">Categorias</button>
+      <div class="search-wrap">
+        <input id="q" type="text" placeholder="Buscar productos" />
+        <button id="applyFilters" class="search-btn" aria-label="Buscar">🔍</button>
+      </div>
+      <a class="top-link" href="#">Ir a Supermercado</a>
+      <a class="top-link right" href="#">Ingresar Cuenta</a>
+    </div>
+  </header>
+
+  <div class="subbar">
+    <div class="subbar-inner">
+      <span class="chip active">Ir a Supermercado</span>
+      <a href="#">Vende con nosotros</a>
+      <a href="#">Tarjeta Catalog</a>
+      <a href="#">Mi Club</a>
+      <a href="#">Centro de ayuda</a>
+    </div>
+  </div>
+
+  <main class="page">
+    <aside class="filters-panel">
+      <h3>Filtros</h3>
+      <div class="filter-box">
+        <label for="minPrice">Precio minimo (CLP)</label>
+        <input id="minPrice" type="text" inputmode="numeric" placeholder="$ 0" />
+      </div>
+      <div class="filter-box">
+        <label for="maxPrice">Precio maximo (CLP)</label>
+        <input id="maxPrice" type="text" inputmode="numeric" placeholder="$ 999.999" />
+      </div>
+      <div class="filter-box">
+        <label for="brand">Marca</label>
+        <input id="brand" type="text" placeholder="Samsung" />
+      </div>
+      <div class="filter-box">
+        <label for="category">Categoria</label>
+        <input id="category" type="text" placeholder="Electronica" />
+      </div>
+      <div class="filter-row">
+        <button id="clearFilters" class="ghost">Limpiar</button>
+      </div>
+    </aside>
+
+    <section class="results-panel">
+      <div class="results-header">
+        <p id="titleResults" class="title-results">Resultados</p>
+        <div class="sort-box">
+          <label for="sortBy">Ordenar por</label>
+          <select id="sortBy">
+            <option value="name">Mas relevantes</option>
+            <option value="price">Precio</option>
+            <option value="brand">Marca</option>
+            <option value="category">Categoria</option>
+            <option value="stock">Stock</option>
+          </select>
+          <select id="sortDir">
+            <option value="asc">Asc</option>
+            <option value="desc">Desc</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="summary" class="summary">Cargando...</div>
+      <div id="error" class="error hidden"></div>
+
+      <div id="products" class="product-grid"></div>
+
+      <div class="pager">
+        <button id="prevPage" class="ghost">Anterior</button>
+        <span id="pageInfo">Pagina 1</span>
+        <button id="nextPage" class="ghost">Siguiente</button>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="productDialog">
+    <article id="dialogContent"></article>
+    <button id="closeDialog" class="ghost">Cerrar</button>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>

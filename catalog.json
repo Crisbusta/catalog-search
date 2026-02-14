@@ -1,0 +1,12 @@
+[
+  {"id":"p-001","name":"Zapatillas Runner X","description":"Zapatillas para running, suela EVA, talle 40-45","category":"Calzado","brand":"SportCo","price":79.99,"oldPrice":99.99,"stock":25,"tags":["running","outdoor"],"imageUrl":"https://example.com/img/p-001.jpg"},
+  {"id":"p-002","name":"Camisa Casual Lona","description":"Camisa algodón premium, manga larga","category":"Ropa","brand":"ModaYa","price":34.50,"oldPrice":null,"stock":100,"tags":["casual"],"imageUrl":"https://example.com/img/p-002.jpg"},
+  {"id":"p-003","name":"Auriculares Inalámbricos A1","description":"Bluetooth 5.2, cancelación ruido","category":"Electrónica","brand":"SoundMax","price":59.00,"oldPrice":79.00,"stock":10,"tags":["audio","gadget"],"imageUrl":"https://example.com/img/p-003.jpg"},
+  {"id":"p-004","name":"Cafetera Express 12oz","description":"Cafetera automática, 15 bar","category":"Hogar","brand":"HomeBrew","price":129.00,"oldPrice":159.99,"stock":5,"tags":["kitchen"],"imageUrl":"https://example.com/img/p-004.jpg"},
+  {"id":"p-005","name":"Mochila Urbana 20L","description":"Mochila impermeable, compartimento laptop 15\"","category":"Accesorios","brand":"UrbanPack","price":49.90,"oldPrice":null,"stock":40,"tags":["travel","work"],"imageUrl":"https://example.com/img/p-005.jpg"},
+  {"id":"p-006","name":"Pantalón Jogger","description":"Jogger sport con ajuste elastico","category":"Ropa","brand":"ModaYa","price":29.90,"oldPrice":39.90,"stock":60,"tags":["sport"],"imageUrl":"https://example.com/img/p-006.jpg"},
+  {"id":"p-007","name":"Smartwatch S2","description":"Monitor cardíaco, notificaciones","category":"Electrónica","brand":"TimeTech","price":89.00,"oldPrice":119.00,"stock":15,"tags":["wearable"],"imageUrl":"https://example.com/img/p-007.jpg"},
+  {"id":"p-008","name":"Lámpara LED de Mesa","description":"Luz regulable, USB-C","category":"Hogar","brand":"LightIt","price":24.50,"oldPrice":null,"stock":30,"tags":["decor"],"imageUrl":"https://example.com/img/p-008.jpg"},
+  {"id":"p-009","name":"Set de Cocina 3 Piezas","description":"Ollas antiadherentes, apto inducción","category":"Hogar","brand":"CookWell","price":69.99,"oldPrice":89.99,"stock":8,"tags":["kitchen"],"imageUrl":"https://example.com/img/p-009.jpg"},
+  {"id":"p-010","name":"Calcetines Pack x3","description":"Algodón confortable","category":"Ropa","brand":"BasicWear","price":9.99,"oldPrice":null,"stock":200,"tags":["basics"],"imageUrl":"https://example.com/img/p-010.jpg"}
+]

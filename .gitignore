@@ -1,0 +1,10 @@
+# Build outputs
+target/
+
+# OS/editor
+.DS_Store
+.idea/
+.vscode/
+
+# Logs
+*.log
