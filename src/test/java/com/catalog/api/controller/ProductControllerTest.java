@@ -38,4 +38,18 @@ class ProductControllerTest {
         mockMvc.perform(get("/api/v1/products/does-not-exist"))
                 .andExpect(status().isNotFound());
     }
+
+    @Test
+    void shouldReturn400WhenPageIsNegative() throws Exception {
+        mockMvc.perform(get("/api/v1/products").queryParam("page", "-1"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.title").value("Invalid Request"));
+    }
+
+    @Test
+    void shouldReturn400WhenSizeHasInvalidType() throws Exception {
+        mockMvc.perform(get("/api/v1/products").queryParam("size", "abc"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.title").value("Invalid Request"));
+    }
 }

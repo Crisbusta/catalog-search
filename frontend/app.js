@@ -27,6 +27,15 @@ const el = {
   closeDialog: document.getElementById('closeDialog'),
 };
 
+function escapeHtml(value) {
+  return String(value ?? '')
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+}
+
 function formatPrice(value) {
   const clpValue = Math.round(Number(value) * CLP_RATE);
   return new Intl.NumberFormat('es-CL', {
@@ -117,28 +126,33 @@ function renderCards(items) {
   el.products.innerHTML = items.map((p) => {
     const tags = (p.tags || []).slice(0, 2);
     const discount = p.oldPrice ? Math.max(0, Math.round(((Number(p.oldPrice) - Number(p.price)) / Number(p.oldPrice)) * 100)) : 0;
+    const safeName = escapeHtml(p.name);
+    const safeBrand = escapeHtml(p.brand);
+    const safeCategory = escapeHtml(p.category);
+    const safeImgUrl = escapeHtml(p.imageUrl || '');
+    const safeId = encodeURIComponent(String(p.id ?? ''));
 
     return `
       <article class="product-card">
         <div class="card-image-wrap">
           ${discount > 0 ? `<span class="sale-badge">Rebaja ${discount}%</span>` : ''}
-          <img class="product-image" src="${p.imageUrl || ''}" alt="${p.name}" loading="lazy" />
+          <img class="product-image" src="${safeImgUrl}" alt="${safeName}" loading="lazy" />
           <div class="image-placeholder hidden" aria-hidden="true">
             <span>Imagen pronto</span>
           </div>
         </div>
-        <button data-id="${p.id}" class="add-btn">+ Agregar</button>
+        <button data-id="${safeId}" class="add-btn">+ Agregar</button>
         <div class="price-row">
           <strong>${formatPrice(p.price)}</strong>
           ${p.oldPrice ? `<span class="old-price">${formatPrice(p.oldPrice)}</span>` : ''}
         </div>
-        <p class="brand">${p.brand}</p>
-        <h3 class="name">${p.name}</h3>
+        <p class="brand">${safeBrand}</p>
+        <h3 class="name">${safeName}</h3>
         <div class="meta-row">
           <span class="stock">Stock ${p.stock}</span>
-          <span class="category">${p.category}</span>
+          <span class="category">${safeCategory}</span>
         </div>
-        <div class="tags">${tags.map((t) => `<span>#${t}</span>`).join('')}</div>
+        <div class="tags">${tags.map((t) => `<span>#${escapeHtml(t)}</span>`).join('')}</div>
       </article>
     `;
   }).join('');
@@ -202,14 +216,16 @@ async function loadProductDetail(id) {
       throw new Error(data.detail || 'No se pudo obtener el detalle');
     }
 
+    const safeTags = (data.tags || []).map((tag) => escapeHtml(tag)).join(', ');
+
     el.dialogContent.innerHTML = `
-      <h3>${data.name}</h3>
-      <p>${data.description}</p>
-      <p><strong>Marca:</strong> ${data.brand}</p>
-      <p><strong>Categoria:</strong> ${data.category}</p>
+      <h3>${escapeHtml(data.name)}</h3>
+      <p>${escapeHtml(data.description)}</p>
+      <p><strong>Marca:</strong> ${escapeHtml(data.brand)}</p>
+      <p><strong>Categoria:</strong> ${escapeHtml(data.category)}</p>
       <p><strong>Precio:</strong> ${formatPrice(data.price)}</p>
       <p><strong>Stock:</strong> ${data.stock}</p>
-      <p><strong>Tags:</strong> ${(data.tags || []).join(', ')}</p>
+      <p><strong>Tags:</strong> ${safeTags}</p>
     `;
 
     el.dialog.showModal();
